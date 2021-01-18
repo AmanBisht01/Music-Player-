@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.R)
+
     public static ArrayList<MusicFiles> getAllAudio(Context context){
         ArrayList<MusicFiles> tempAudioList= new ArrayList<>();
         Uri uri= MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
