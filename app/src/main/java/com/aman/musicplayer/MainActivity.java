@@ -30,13 +30,13 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE = 1;
-    ArrayList<MusicFiles> musicFiles;
+    static ArrayList<MusicFiles> musicFiles;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         permission();
-        initViewPager();
+
     }
 
     private void permission() {
@@ -45,8 +45,9 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}
             , REQUEST_CODE);
         }else{
-            Toast.makeText(this, "Permission Granteed", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Permission Granteed", Toast.LENGTH_SHORT).show();
             musicFiles=getAllAudio(this);
+            initViewPager();
         }
     }
 
@@ -54,9 +55,11 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(requestCode == REQUEST_CODE){
+
             if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(this, "Permission Granteed", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Permission Granteed", Toast.LENGTH_SHORT).show();
                 getAllAudio(this);
+                initViewPager();
             }else{
                 ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}
                         , REQUEST_CODE);
