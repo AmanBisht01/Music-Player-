@@ -1,9 +1,9 @@
 package com.aman.musicplayer;
 
 import android.content.Context;
-import android.media.MediaMetadata;
+import android.content.Intent;
 import android.media.MediaMetadataRetriever;
-import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +22,9 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
     private Context mcontext;
     private ArrayList<MusicFiles> mfiles;
 
-     MusicAdapter(Context mcontext, ArrayList<MusicFiles>mfiles){
-        this.mfiles=mfiles;
-        this.mcontext=mcontext;
+     public MusicAdapter(Context mcontext, ArrayList<MusicFiles> mfiles){
+         this.mcontext=mcontext;
+         this.mfiles=mfiles;
     }
 
     @NonNull
@@ -39,7 +39,9 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
          holder.file_name.setText(mfiles.get(position).getTitle());
+
         byte[] image=getAlbumArt(mfiles.get(position).getPath());
+
         if(image!=null){
             Glide.with(mcontext).asBitmap()
                     .load(image)
@@ -48,8 +50,25 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
             Glide.with(mcontext)
                     .load(R.drawable.ic_album)
                     .into(holder.Album_art);
+
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO
+
+                Intent intent1=new Intent(holder.itemView.getContext(),PlayerActivity2.class);
+//                Intent intent=new Intent(mcontext,PlayerActivity2.class);
+                Bundle b = new Bundle();
+                intent1.putExtra("position", position);
+                holder.itemView.getContext().startActivity(intent1);
+
+            }
+        });
+
     }
+
 
     @Override
     public int getItemCount() {
@@ -57,7 +76,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
     }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
          TextView file_name;
          ImageView Album_art;
         public MyViewHolder(@NonNull View itemView) {
@@ -65,7 +84,11 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
             file_name=itemView.findViewById(R.id.music_file_name);
             Album_art=itemView.findViewById(R.id.music_img);
         }
+
+
     }
+
+
     private  byte[] getAlbumArt(String uri)
     {
         MediaMetadataRetriever retriever=new MediaMetadataRetriever();

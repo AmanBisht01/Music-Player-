@@ -126,10 +126,6 @@ public class MainActivity extends AppCompatActivity {
                 MediaStore.Audio.Media.DURATION,
                 MediaStore.Audio.Media.DATA,
                 MediaStore.Audio.Media.ARTIST,
-
-
-
-
         };
         Cursor cursor=context.getContentResolver().query( uri, Projection, null, null,null);
         if(cursor !=null)

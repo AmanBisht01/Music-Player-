@@ -15,8 +15,8 @@ public class MusicFiles {
         this.duration = duration;
     }
 
-    public MusicFiles() {
-       }
+//    public MusicFiles() {
+//       }
 
     public String getPath() {
         return path;
