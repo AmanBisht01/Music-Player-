@@ -3,6 +3,7 @@ package com.aman.musicplayer;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaMetadataRetriever;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,18 +54,15 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
 
         }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO
+        holder.itemView.setOnClickListener(v -> {
+            //TODO
 
-                Intent intent1=new Intent(holder.itemView.getContext(),PlayerActivity2.class);
-//                Intent intent=new Intent(mcontext,PlayerActivity2.class);
-                Bundle b = new Bundle();
-                intent1.putExtra("position", position);
-                holder.itemView.getContext().startActivity(intent1);
+//                Intent intent1=new Intent(holder.itemView.getContext(),PlayerActivity2.class);
+            Intent intent=new Intent(mcontext,PlayerActivity2.class);
+//                Bundle b = new Bundle();
+            intent.putExtra("position", position);
+            mcontext.startActivity(intent);
 
-            }
         });
 
     }

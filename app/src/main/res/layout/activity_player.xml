@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/activity_player"
+    android:id="@+id/mContainer"
     android:background="@drawable/main_background"
     android:orientation="vertical"
     tools:context=".PlayerActivity2">
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:id="@+id/layout_top_btn"
-        android:background="@drawable/gradient"
+        android:background="@drawable/gradient2"
         android:layout_alignParentTop="true">
 
         <ImageView
@@ -73,7 +73,6 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:id="@+id/image_view_gradient"
-            android:src="@drawable/gradient"
             android:layout_alignParentBottom="true"
 
             />
@@ -150,7 +149,7 @@
             android:clickable="true"
 
 
-            />
+            android:contentDescription="TODO" />
 
         <ImageView
             android:id="@+id/id_next"
@@ -160,7 +159,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@id/play_pause"
-            />
+            android:contentDescription="TODO" />
 
         <ImageView
             android:layout_width="35dp"
